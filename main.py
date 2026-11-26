@@ -25,8 +25,3 @@ for i in range(epochs):
     
     if i % 100 == 0:
         print(f"Epoch {i} Loss: {loss.data}")
-
-
-
-    
-
