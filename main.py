@@ -5,7 +5,7 @@ from Layer import Layer
 epochs = 2000
 learningRate = 0.05
 Input_Bits = 6
-oddEven = MLP(Input_bits, [3, 1])
+oddEven = MLP(Input_Bits, [3, 1])
 
 data = [32, 5, 7, 9, 8, 10, 4, 3]
 outputs = [1, 0, 0, 0, 1, 1, 1, 0]
