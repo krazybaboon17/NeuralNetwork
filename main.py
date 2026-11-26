@@ -12,10 +12,17 @@ outputs = [1, 0, 0, 0, 1, 1, 1, 0]
 for i in range(epochs):
     predY = []
     for x in data:
-        predY.append(oddEven(x))
-    loss = 0
+    
+    #    predY.append(oddEven(x))
+    #loss = 0
+        predY.append(oddEven([Value(x)])[0]) #doesnt this return a list
+    loss = Value(0.0) #maybe making it value works better
+    
     for yActual, yPred in zip(outputs, predY):
-        loss += (yPred - yActual) ** 2
+        
+        #loss += (yPred - yActual) ** 2
+        loss += (yPred + Value(-yActual)) ** 2 #i think this needs value too
+        
     for parameter in oddEven.parameters():
         parameter.grad = 0.0
     loss.backward()
