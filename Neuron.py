@@ -9,7 +9,7 @@ class Neuron:
     def __call__(self, x):
         out = self.b
         for wi, xi in zip(self.w, x):
-            out += wi * xi + self.b
-        return out.tanh()
+            out += wi * xi          # + self.b
+        return out.activation()     #tanh()
     def parameters(self):
-        return self.w + list(self.b)
+        return self.w + [self.b]    #list(self.b)
