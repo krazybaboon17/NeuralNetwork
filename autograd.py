@@ -11,7 +11,7 @@ dL/dO = (1 - tanh^2(O))
 class Value:
     def __init__(self, data, children = ()):
         self.data = data
-        self.children = 0
+        self.children = children
         self.grad = 0
         self._backward = lambda: None
 
