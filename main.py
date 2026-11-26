@@ -21,13 +21,14 @@ for i in range(epochs):
         predY.append(oddEven(bits)[0])
         #predY.append(oddEven([Value(x)])[0]) #doesnt this return a list
     loss = Value(0.0) #maybe making it value works better
-
+    counter = 0
     for yActual, yPred in zip(outputs, predY):
-        
+        counter += 1
         #loss += (yPred - yActual) ** 2
         #loss += (yPred + Value(-yActual)) ** 2 #i think this needs value too
         err = yPred + Value(-yActual)
         loss += err * err
+        loss = loss * Value(1 / counter) #average loss
         
     for parameter in oddEven.parameters():
         parameter.grad = 0.0
@@ -38,3 +39,10 @@ for i in range(epochs):
     
     if i % 100 == 0:
         print(f"Epoch {i} Loss: {loss.data}")
+def test(x):
+    bits = [Value((x >> bit) & 1) for bit in range(Input_Bits)] #doing ts convert to bits thing
+    result = oddEven(bits)[0] # get ts result so we can show it
+    print(result.data)
+
+x = int(input("enter num: "))
+test(x)
