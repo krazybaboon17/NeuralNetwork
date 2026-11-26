@@ -7,7 +7,7 @@ class Neuron:
             self.w.append(Value(random.uniform(-1, 1)))
         self.b = Value(0.0)
     def __call__(self, x):
-        out = 0
+        out = self.b
         for wi, xi in zip(self.w, x):
             out += wi * xi + self.b
         return out.tanh()
