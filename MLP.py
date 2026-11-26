@@ -7,7 +7,7 @@ class MLP:
         sizes = [inputs] + sizes
         self.layers = []
         for i in range(len(sizes) - 1):
-            Layer(sizes[i], sizes[i + 1])
+            self.layers.append(Layer(sizes[i], sizes[i + 1]))
     def __call__(self, x):
         for layer in self.layers:
             x = layer(x)
