@@ -9,7 +9,7 @@ dL/dO = (1 - tanh^2(O))
 
 """
 class Value:
-    def __init__(self, data, children = (), ):
+    def __init__(self, data, children = ()):
         self.data = data
         self.children = 0
         self.grad = 0
@@ -17,21 +17,21 @@ class Value:
 
 
     def __add__(self, other):
-        out = Value(other.data + self.data)
+        out = Value(other.data + self.data, (self, other))
         def _backward():
             self.grad += out.grad
             other.grad += out.grad
         out._backward = _backward
         return out
     def __mul__(self, other):
-        out = Value(self.data * other.data)
+        out = Value(self.data * other.data, (self, other))
         def _backward():
             self.grad += out.grad * other.data
             other.grad += out.grad * self.data
         out._backward = _backward
         return out
     def activation(self):
-        out = Value(np.tanh(self.data))
+        out = Value(np.tanh(self.data) (self,))
         def _backward():
             self.grad += (1 - out.data ** 2) * out.grad
         out._backward = _backward
