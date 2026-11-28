@@ -31,11 +31,34 @@ class Value:
         out._backward = _backward
         return out
     def activation(self):
+        #relu stuff below: 
+        out = Value(max(0, self.data), (self,))
+        def _backward():
+            self.grad += (out.data > 0) * out.grad
+        out._backward = _backward
+        return out
+    
+        """
+        #sigmoid stuff below: 
+        out = Value(1 / (1 + np.exp(-self.data)), (self,))
+        def _backward():
+            self.grad += (out.data * (1 - out.data)) * out.grad
+        out._backward = _backward
+        return out
+        
+        """
+        
+        
+        """
+        #tanh stuff below: 
+
         out = Value(np.tanh(self.data), (self,))
         def _backward():
             self.grad += (1 - out.data ** 2) * out.grad
         out._backward = _backward
         return out
+        """
+        
     def backward(self):
         topo = []
         visited = set()

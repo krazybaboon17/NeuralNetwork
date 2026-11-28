@@ -5,9 +5,10 @@ from Layer import Layer
 epochs = 2000
 learningRate = 0.05
 Input_Bits = 6
+#I HATE TS I THOUGHT IT WAS SIMPLE GNG
 
 #oddEven = MLP(Input_Bits, [3, 1])
-oddEven = MLP(1, [3, 1]) #changed to only get last digit
+oddEven = MLP(1, [10, 1]) #changed to only get last digit
 data = [32, 5, 7, 9, 8, 10, 4, 3]
 outputs = [1, 0, 0, 0, 1, 1, 1, 0]
 
@@ -47,4 +48,5 @@ def test(x):
     print(result.data)
 
 x = int(input("enter num: "))
+x = x % 10
 test(x)
