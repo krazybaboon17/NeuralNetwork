@@ -5,8 +5,9 @@ from Layer import Layer
 epochs = 2000
 learningRate = 0.05
 Input_Bits = 6
-oddEven = MLP(Input_Bits, [3, 1])
 
+#oddEven = MLP(Input_Bits, [3, 1])
+oddEven = MLP(1, [3, 1]) #changed to only get last digit
 data = [32, 5, 7, 9, 8, 10, 4, 3]
 outputs = [1, 0, 0, 0, 1, 1, 1, 0]
 
@@ -17,8 +18,9 @@ for i in range(epochs):
     #    predY.append(oddEven(x))
     #loss = 0
         #small to big
-        bits = [Value((x >> bit) & 1) for bit in range(Input_Bits)] # - 1
-        predY.append(oddEven(bits)[0])
+        #bits = [Value((x >> bit) & 1) for bit in range(Input_Bits)] # - 1
+        lastDigit = [Value(x % 10)]
+        predY.append(oddEven(lastDigit)[0])
         #predY.append(oddEven([Value(x)])[0]) #doesnt this return a list
     loss = Value(0.0) #maybe making it value works better
     counter = 0
